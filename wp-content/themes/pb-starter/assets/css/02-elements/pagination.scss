@@ -1,0 +1,9 @@
+/* -- Pagination -- */
+
+.pagination {
+    gap: var(--wp--custom--spacing--gap);
+}
+
+.wp-block-post-navigation-link:empty {
+    display: none;
+}

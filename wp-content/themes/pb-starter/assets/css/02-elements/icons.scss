@@ -1,0 +1,31 @@
+svg,
+.icon {
+	width: var(--wp--custom--icon--small);
+	height: var(--wp--custom--icon--small);
+	fill: var(--wp--preset--color--main);
+}
+
+a {
+
+	svg,
+	.icon {
+		fill: var(--wp--custom--color--link);
+	}
+
+	&:hover,
+	&:focus {
+		& > svg,
+		& > .icon {
+			fill: var(--wp--custom--color--link-hover);
+		}
+	}
+}
+
+
+.has-background,
+.has-text-color {
+	svg,
+	.icon {
+		fill: inherit;
+	}
+}

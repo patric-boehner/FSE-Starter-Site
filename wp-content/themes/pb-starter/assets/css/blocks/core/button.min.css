@@ -1,0 +1,12 @@
+.wp-block-button .wp-block-button__link {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.wp-block-button .wp-block-button__link:disabled, .wp-block-button .wp-block-button__link[disabled] {
+  cursor: not-allowed;
+  opacity: 0.15;
+  pointer-events: none;
+}

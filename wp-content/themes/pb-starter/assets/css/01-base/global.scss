@@ -1,0 +1,56 @@
+/* -- Defaults -- */
+
+
+// Improve media defaults
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
+
+a,
+button,
+input,
+textarea,
+.wp-block-button__link {
+	transition: var(--wp--custom--transition--default);
+}
+
+a,
+a:focus,
+a:hover,
+a:not(.wp-block-button__link) {
+	text-decoration-thickness: 1px;
+}
+
+b,
+strong,
+th {
+	font-weight: var(--wp--custom--font-weight--bold);
+}
+
+
+sup {
+	color: var(--wp--preset--color--primary-500);
+	font-size: 0.75rem;
+
+	a {
+		color: var(--wp--preset--color--primary-500);
+		text-decoration: none;
+	}
+}
+
+
+// Fix for image lightbox with caption trigger overflow from core
+.wp-block-gallery {
+
+	.lightbox-trigger {
+		top: 1rem !important; /* stylelint-disable-line declaration-no-important */
+	}
+
+}
