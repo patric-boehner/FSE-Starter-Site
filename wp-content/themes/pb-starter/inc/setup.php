@@ -27,11 +27,24 @@ function fse_starter_setup() {
      */
     load_theme_textdomain( 'pb-starter', THEME_PATH . 'languages' );
 
-    // Enqueue editor stylesheet.
-    // add_editor_style( THEME_PATH . 'style.css' );
-
     // Remove core block patterns.
     remove_theme_support( 'core-block-patterns' );
+
+    /**
+     * Enable editor styles and add theme editor stylesheet.
+     * 
+     * When using add_editor_style(), WordPress automatically:
+     * 1. Wraps all selectors with .editor-styles-wrapper for proper scoping
+     * 2. Inlines the processed CSS in the editor's <head> section
+     * 
+     * This prevents editor styles from affecting the admin interface.
+     */
+
+    // Enable editor styles support
+    add_theme_support( 'editor-styles' );
+
+    // Add your editor stylesheet
+    add_editor_style( '/assets/css/editor-base.min.css' );
 
     // Disable the loading of remote patterns from the Dotorg pattern directory.
     add_filter( 'should_load_remote_block_patterns', '__return_false' );

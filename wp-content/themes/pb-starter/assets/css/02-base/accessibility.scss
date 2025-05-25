@@ -1,0 +1,6 @@
+/* -- Accessibility -- */
+
+.skip-link.screen-reader-text:focus {
+    color: var(--wp--preset--color--contrast);
+	background: var(--wp--preset--color--neutral);
+}

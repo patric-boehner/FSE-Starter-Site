@@ -18,12 +18,12 @@
 			"spacingSizes": [
 				{
 					"name": "Small",
-					"size": "clamp(0.85rem, 2vw, 1.5rem)",
+					"size": "clamp(0.85rem, 2vw, 1rem)",
 					"slug": "small"
 				},
 				{
 					"name": "Medium",
-					"size": "clamp(1rem, 2.5vw, 2rem)",
+					"size": "clamp(1.5rem, 2.5vw, 2rem)",
 					"slug": "medium"
 				},
 				{
@@ -33,17 +33,17 @@
 				},
 				{
 					"name": "Extra Large",
-					"size": "clamp(1.5rem, 6.5vw, 4rem)",
+					"size": "clamp(2rem, 6.5vw, 4rem)",
 					"slug": "x-large"
 				},
 				{
 					"name": "2X Large",
-					"size": "clamp(2rem, 7.5vw, 6rem)",
+					"size": "clamp(4rem, 7.5vw, 6rem)",
 					"slug": "xx-large"
 				},
 				{
 					"name": "Giant",
-					"size": "clamp(2rem, 8vw, 7.5rem)",
+					"size": "clamp(5rem, 8vw, 7.5rem)",
 					"slug": "giant"
 				}
 			]
@@ -233,7 +233,8 @@
 				"default": "all 0.2s ease-in-out"
 			},
 			"spacing": {
-				"gap": "30px"
+				"gap": "30px",
+				"header-height": "54px" 
 			},
 			"button": {
 				"spacing-vertical": "15px",

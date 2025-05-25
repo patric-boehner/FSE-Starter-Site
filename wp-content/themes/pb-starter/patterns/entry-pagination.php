@@ -6,8 +6,8 @@
  */
 ?>
 
-<!-- wp:group {"metadata":{"name":"Entry Pagination"},"className":"adjacent-entry-pagination pagination","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
-<div class="wp-block-group adjacent-entry-pagination pagination">
+<!-- wp:group {"metadata":{"name":"Entry Pagination"},"className":"adjacent-entry-pagination","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+<div class="wp-block-group adjacent-entry-pagination">
 
     <!-- wp:post-navigation-link {"type":"previous","showTitle":true} /-->
     <!-- wp:post-navigation-link {"type":"next","showTitle":true} /-->

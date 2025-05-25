@@ -10,6 +10,7 @@
 add_filter( 'acf/settings/enable_post_types', '__return_false' );
 add_filter( 'acf/settings/enable_options_pages_ui', '__return_false' );
 
+
 // Don't output empty message on blocks
 add_filter( 'acf/blocks/no_fields_assigned_message', '__return_empty_string' );
 

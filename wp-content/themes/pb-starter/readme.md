@@ -2,6 +2,9 @@
 
 ## Overview
 
+**Note**
+This was a summary written by Chat GPT based on some thoughts I was having when translating my approach to client work and theme building to Full Site Editing and choice I was making setting up this starter theme. They may not be accurate.
+
 This theme is built using a **hybrid design system** that balances flexibility for content editors with long-term maintainability and visual consistency. It embraces the strengths of the WordPress Block Editor while putting guardrails in place to prevent design drift and reduce technical debt.
 
 ---

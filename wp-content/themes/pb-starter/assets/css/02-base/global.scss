@@ -13,6 +13,11 @@ svg {
 }
 
 
+// .wp-block-heading {
+//   margin-block-start: var(--wp--preset--spacing--medium);
+// }
+
+
 a,
 button,
 input,
@@ -21,11 +26,23 @@ textarea,
 	transition: var(--wp--custom--transition--default);
 }
 
-a,
-a:focus,
-a:hover,
-a:not(.wp-block-button__link) {
-	text-decoration-thickness: 1px;
+
+input:focus,
+select:focus,
+textarea:focus
+*:focus-visible {
+	outline: 2px solid;
+	outline-offset: 2px;
+	text-decoration: none;
+	opacity: 1;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+	*:focus,
+	*:focus-visible {
+	  transition: var(--wp--custom--transition--default);
+	}
 }
 
 b,
@@ -43,14 +60,4 @@ sup {
 		color: var(--wp--preset--color--primary-500);
 		text-decoration: none;
 	}
-}
-
-
-// Fix for image lightbox with caption trigger overflow from core
-.wp-block-gallery {
-
-	.lightbox-trigger {
-		top: 1rem !important; /* stylelint-disable-line declaration-no-important */
-	}
-
 }

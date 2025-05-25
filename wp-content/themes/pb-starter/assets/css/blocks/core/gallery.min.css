@@ -1,0 +1,3 @@
+.wp-block-gallery .lightbox-trigger {
+  top: 1rem !important; /* stylelint-disable-line declaration-no-important */
+}

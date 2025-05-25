@@ -6,6 +6,18 @@
  **/
 
 
+// Cache Busting
+function cache_version_id() {
+
+	if ( WP_DEBUG ) {
+		return time();
+	} else {
+		return THEME_VERSION;
+	}
+
+}
+
+
 /**
  * Enqueue scripts and styles.
  */
@@ -25,15 +37,8 @@ function fse_starter_enqueue_stylesheet() {
 /**
  * Gutenberg scripts and styles
  */
-add_action( 'enqueue_block_editor_assets', 'fse_block_editor_scripts' );
-function fse_block_editor_scripts() {
-
-	wp_enqueue_style( 
-		'frontend-style',
-		THEME_URL . 'assets/css/editor.min.css',
-		array(),
-		cache_version_id() 
-	);
+add_action( 'enqueue_block_editor_assets', 'fse_enqueue_block_editor_customizations' );
+function fse_enqueue_block_editor_customizations() {
 
 	wp_enqueue_script( 
 		'theme-editor', 
@@ -68,14 +73,13 @@ function fse_block_editor_scripts() {
 
 add_action( 'init', 'fse_register_all_block_styles' );
 function fse_register_all_block_styles() {
-	$theme_version = wp_get_theme()->get( 'Version' );
 
 	// Load core block styles
 	fse_register_block_styles_from_dir(
 		'core',
 		get_stylesheet_directory() . '/assets/css/blocks/core/',
 		get_stylesheet_directory_uri() . '/assets/css/blocks/core/',
-		$theme_version
+		cache_version_id()
 	);
 
 	// Load custom block styles
@@ -83,7 +87,7 @@ function fse_register_all_block_styles() {
 		'custom',
 		get_stylesheet_directory() . '/assets/css/blocks/custom/',
 		get_stylesheet_directory_uri() . '/assets/css/blocks/custom/',
-		$theme_version
+		cache_version_id()
 	);
 }
 
@@ -96,7 +100,9 @@ function fse_register_all_block_styles() {
  * @param string $version   Theme version string.
  */
 function fse_register_block_styles_from_dir( $namespace, $dir, $uri, $version ) {
+
 	foreach ( glob( $dir . '*.css' ) as $file_path ) {
+
 		$filename   = basename( $file_path );
 		$block_slug = basename( $file_path, '.min.css' ); // Adjust if not using minified files
 		$block_name = $namespace . '/' . $block_slug;
@@ -115,7 +121,9 @@ function fse_register_block_styles_from_dir( $namespace, $dir, $uri, $version ) 
 			'path'   => $file_path,
 			'ver'    => $version . '.' . filemtime( $file_path ),
 		) );
+
 	}
+
 }
 
 /**
@@ -123,6 +131,7 @@ function fse_register_block_styles_from_dir( $namespace, $dir, $uri, $version ) 
  */
 add_action( 'enqueue_block_editor_assets', 'fse_enqueue_editor_styles_for_registered_blocks' );
 function fse_enqueue_editor_styles_for_registered_blocks() {
+	
 	global $wp_styles;
 
 	if ( ! empty( $wp_styles->registered ) ) {

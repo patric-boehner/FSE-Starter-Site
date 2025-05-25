@@ -6,12 +6,11 @@
  **/
 
 
- /**
+/**
  * Headers class
  */
-
- add_action( 'wp_headers', 'fse_set_frame_option_header', 99, 1 );
- function fse_set_frame_option_header( $headers ) {
+add_action( 'wp_headers', 'fse_set_frame_option_header', 99, 1 );
+function fse_set_frame_option_header( $headers ) {
 
 	// Allow omission of this header
 	if ( true === apply_filters( 'fse_disable_x_frame_options', false ) ) {
@@ -42,33 +41,6 @@ function add_archive_style_body_class( $classes ) {
     return $classes;
 
 }
-
-
-/**
- * Clean body classes
- *
- * @param array $classes Body classes.
- */
-// add_filter( 'body_class', 'fse_clean_body_classes', 20 );
-// function fse_clean_body_classes( $classes ) {
-
-// 	$allowed_classes = [
-// 		'singular',
-// 		'single',
-// 		'page',
-// 		'archive',
-// 		'home',
-// 		'search',
-// 		'admin-bar',
-// 		'logged-in',
-// 		'wp-embed-responsive'
-// 	];
-
-// 	return array_intersect( $classes, $allowed_classes );
-
-// }
-
-
 
 
 // Remove inline CSS for emoji.

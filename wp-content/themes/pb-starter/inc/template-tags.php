@@ -18,8 +18,8 @@
  * - Does not rely on WordPress hooks or filters.
  */
 
-// Generate the copyright information.
 
+// Generate the copyright information.
 function get_fse_copyyright() {
 
     $copyright_info = '&copy;' .  esc_attr( gmdate( 'Y' ) );
