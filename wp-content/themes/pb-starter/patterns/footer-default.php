@@ -4,6 +4,7 @@
  * Slug: fse-starter/footer-default
  * Categories: footer
  * Block Types: core/template-part/footer
+ * Inserter: no
  */
 ?>
 <!-- wp:group {"metadata":{"name":"Site Footer"},"align":"full","className":"footer-base","layout":{"type":"constrained"}} -->

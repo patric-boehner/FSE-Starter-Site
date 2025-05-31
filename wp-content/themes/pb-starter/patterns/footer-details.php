@@ -42,8 +42,8 @@
             <h3 class="wp-block-heading" id="about-us">About Us</h3>
             <!-- /wp:heading -->
 
-            <!-- wp:list {"className":"is-style-no-disc"} -->
-            <ul class="wp-block-list is-style-no-disc">
+            <!-- wp:list {"className":"is-style-no-bullets"} -->
+            <ul class="wp-block-list is-style-no-bullets">
                 <!-- wp:list-item -->
                 <li><a href="#">Start Here</a></li>
                 <!-- /wp:list-item -->
@@ -76,8 +76,8 @@
             <h3 class="wp-block-heading" id="services">Services</h3>
             <!-- /wp:heading -->
 
-            <!-- wp:list {"className":"is-style-no-disc"} -->
-            <ul class="wp-block-list is-style-no-disc">
+            <!-- wp:list -->
+            <ul class="wp-block-list">
                 <!-- wp:list-item -->
                 <li><a href="#">Web Design</a></li>
                 <!-- /wp:list-item -->

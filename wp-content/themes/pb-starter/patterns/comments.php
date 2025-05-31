@@ -4,6 +4,14 @@
  * Slug: fse-starter/comments
  * Inserter: no
  */
+
+if (post_password_required()) {
+    return;
+}
+
+if (!have_comments() && !comments_open()) {
+    return; // Don’t render the wrapper
+}
 ?>
 
 <!-- wp:group {"tagName":"section","metadata":{"name":"Comments"},"className":"entry-comments","layout":{"type":"constrained"}} -->
@@ -22,11 +30,11 @@
 				<!-- wp:group {"tagName":"header","layout":{"type":"flex","flexWrap":"nowrap"}} -->
 				<header class="wp-block-group">
 					<!-- wp:avatar {"size":48} /-->
-					<!-- wp:group {"layout":{"type":"default"}} -->
-					<div class="wp-block-group">
+					<!-- wp:group {"className":"comment-meta","layout":{"type":"default"}} -->
+					<div class="wp-block-group comment-meta">
 						<!-- wp:comment-author-name /-->
-						<!-- wp:group {"layout":{"type":"flex"}} -->
-						<div class="wp-block-group">
+						<!-- wp:group {"className":"comment-date","layout":{"type":"flex"}} -->
+						<div class="wp-block-group comment-date">
 							<!-- wp:comment-date /-->
 							<!-- wp:comment-edit-link /-->
 						</div>

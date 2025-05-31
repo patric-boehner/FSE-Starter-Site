@@ -28,8 +28,8 @@ define( 'THEME_INC', THEME_PATH . 'inc/' );
 
 
 // Functionality
-require_once THEME_INC . 'setup.php';
-require_once THEME_INC . 'scripts.php';
+require_once THEME_INC . 'setup/setup.php';
+require_once THEME_INC . 'setup/scripts.php';
 require_once THEME_INC . 'security.php';
 require_once THEME_INC . 'skip-links.php';
 require_once THEME_INC . 'wordpress-cleanup.php';
