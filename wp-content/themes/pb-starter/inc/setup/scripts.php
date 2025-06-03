@@ -100,30 +100,37 @@ function fse_register_all_block_styles() {
  * @param string $version   Theme version string.
  */
 function fse_register_block_styles_from_dir( $namespace, $dir, $uri, $version ) {
-
-	foreach ( glob( $dir . '*.css' ) as $file_path ) {
-
-		$filename   = basename( $file_path );
-		$block_slug = basename( $file_path, '.min.css' ); // Adjust if not using minified files
-		$block_name = $namespace . '/' . $block_slug;
-		$handle     = $namespace . '-' . $block_slug;
-
-		wp_register_style(
-			$handle,
-			$uri . $filename,
-			array(),
-			$version . '.' . filemtime( $file_path )
-		);
-
-		wp_enqueue_block_style( $block_name, array(
-			'handle' => $handle,
-			'src'    => $uri . $filename,
-			'path'   => $file_path,
-			'ver'    => $version . '.' . filemtime( $file_path ),
-		) );
-
-	}
-
+    foreach ( glob( $dir . '*.min.css' ) as $file_path ) {
+        $filename = basename( $file_path );
+        $block_slug = basename( $file_path, '.min.css' );
+        
+        if ( $namespace === 'custom' ) {
+            $potential_cf_block = 'cf/' . $block_slug;
+            if ( WP_Block_Type_Registry::get_instance()->is_registered( $potential_cf_block ) ) {
+                $block_name = $potential_cf_block;
+            } else {
+                $block_name = $namespace . '/' . $block_slug;
+            }
+        } else {
+            $block_name = $namespace . '/' . $block_slug;
+        }
+        
+        $handle = $namespace . '-' . $block_slug;
+        
+        wp_register_style(
+            $handle,
+            $uri . $filename,
+            array(),
+            $version . '.' . filemtime( $file_path )
+        );
+        
+        wp_enqueue_block_style( $block_name, array(
+            'handle' => $handle,
+            'src' => $uri . $filename,
+            'path' => $file_path,
+            'ver' => $version . '.' . filemtime( $file_path ),
+        ) );
+    }
 }
 
 /**

@@ -73,14 +73,9 @@ function cf_version_id() {
 // Functions
 // require_once( CORE_DIR . 'inc/functions/dont-update.php' );
 // require_once( CORE_DIR . 'inc/functions/custom-meta.php' );
-// require_once( CORE_DIR . 'inc/functions/custom-functions.php' );
-// require_once( CORE_DIR . 'inc/functions/acf.php' );
+require_once( CORE_DIR . 'inc/functions/custom-functions.php' );
+require_once( CORE_DIR . 'inc/functions/acf.php' );
 // require_once( CORE_DIR . 'inc/functions/user-profile.php' );
-
-
-// Blocks
-// require_once( CORE_DIR . 'inc/blocks/register-blocks.php' );
-// require_once( CORE_DIR . 'inc/blocks/block-categories.php' );
 
 
 // Plugin

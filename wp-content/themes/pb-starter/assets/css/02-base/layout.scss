@@ -27,7 +27,7 @@
 .wp-block-cover,
 .has-background,
 [class*="is-style-section"] {
-	padding: var(--wp--preset--spacing--medium);
+	padding: var(--wp--preset--spacing--small);
 
 	&.alignfull {
 		 padding-block: var(--wp--preset--spacing--x-large);
@@ -85,4 +85,34 @@ article.type-page > *  {
 
 .footer-base {
     padding-block: var(--wp--preset--spacing--small);
+}
+
+
+/*
+ * Selective Styles
+ */
+
+.is-style-large-gap {
+    gap: var(--wp--preset--spacing--large);
+}
+
+
+@media only screen and (max-width: 600px) {
+
+	/* -- Utility -- */
+
+	.is-style-hidden-mobile {
+		display: none !important;
+	}
+
+}
+
+@media only screen and (max-width: 782px) {
+
+	/* -- Columns -- */
+
+	.is-style-columns-reverse {
+		flex-direction: column-reverse;
+	}
+
 }

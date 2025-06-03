@@ -54,7 +54,7 @@
 					"slug": "base"
 				},
 				{
-					"color": "#212529",
+					"color": "#192625 ",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
@@ -64,12 +64,12 @@
 					"slug": "primary"
 				},
 				{
-					"color": "#264653",
+					"color": "#165951",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#DDE6E9",
+					"color": "#E7F1F0",
 					"name": "Neutral",
 					"slug": "neutral"
 				}
@@ -238,7 +238,7 @@
 				"utility": "0.125rem",
 				"small": "1.2rem",
 				"medium": "1.8rem",
-				"large": "2.2rem"
+				"large": "3.2rem"
 			}
 		},
 		"blocks": {}

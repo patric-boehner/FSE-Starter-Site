@@ -32,3 +32,80 @@ function cf_register_icon_block() {
 
 }
 
+
+/**
+ * Dynamic Icon Select
+ * Lists icons found in theme's /assets/svg directory
+ *
+ * https://www.billerickson.net/dynamic-dropdown-fields-in-acf/
+ */
+add_filter('acf/load_field/name=icon_select', 'cf_acf_icon_select' );
+function cf_acf_icon_select( $field ) {
+    
+    $field['choices'] = array( '' => '(None)' );
+    
+    if( ! function_exists( 'cf_get_theme_icons' ) )
+        return $field;
+    
+    // Get icons from multiple directories
+    $directories = array( 'utility', 'decorative' );
+    
+    foreach( $directories as $directory ) {
+        $icons = cf_get_theme_icons( $directory );
+        foreach( $icons as $icon ) {
+            // Use directory/icon format as the value, nice label as display
+            $field['choices'][ $directory . '/' . $icon ] = ucwords( str_replace( ['-', '_'], ' ', $icon ) );
+        }
+    }
+    
+    return $field;
+}
+
+/**
+ * Get Theme Icons
+ * Refresh cache by bumping WP_THEME_VERSION (or manually clear with cf_clear_icon_cache())
+ */
+function cf_get_theme_icons( $directory = 'decorative' ) {
+
+    $icons = get_option( 'cf_theme_icons_' . $directory );
+    $version = get_option( 'cf_theme_icons_' . $directory . '_version' );
+    $current_version = defined( 'WP_THEME_VERSION' ) ? WP_THEME_VERSION : wp_get_theme()->get('Version');
+    
+    if( empty( $icons ) || version_compare( $current_version, $version, '>' ) ) {
+        $icons = scandir( get_template_directory() . '/assets/svg/' . $directory );
+        $icons = array_diff( $icons, array( '..', '.' ) );
+        $icons = array_values( $icons );
+        
+        if( empty( $icons ) ) {
+            return $icons;
+        }
+        
+        // remove the .svg extension
+        foreach( $icons as $i => $icon ) {
+            if( substr( $icon, -4 ) === '.svg' ) {
+                $icons[ $i ] = substr( $icon, 0, -4 );
+            }
+        }
+        
+        update_option( 'cf_theme_icons_' . $directory, $icons );
+        update_option( 'cf_theme_icons_' . $directory . '_version', $current_version );
+    }
+    
+    return $icons;
+
+}
+
+/**
+ * Helper function to manually clear icon cache
+ * Call this function when you add new icons and want to see them immediately
+ */
+function cf_clear_icon_cache() {
+    $directories = array( 'utility', 'decorative' );
+    foreach( $directories as $directory ) {
+        delete_option( 'cf_theme_icons_' . $directory );
+        delete_option( 'cf_theme_icons_' . $directory . '_version' );
+    }
+}
+
+// Uncomment the line below to clear cache on next page load (then comment it back out)
+// add_action( 'init', 'cf_clear_icon_cache' );

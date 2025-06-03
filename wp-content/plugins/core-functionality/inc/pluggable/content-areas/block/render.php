@@ -25,14 +25,6 @@ if ( !empty( $block['className'] ) ) {
     $class_name .= ' ' . $block['className'];
 }
 
-// Show editor-only message if no area is selected
-if ( empty( $term_id ) ) {
-    if ( is_admin() ) {
-        echo '<div class="wp-block-area wp-block-area__missing"><em>Please select a block area to display content.</em></div>';
-    }
-    return;
-}
-
 
 // Query the content_area post tied to the selected taxonomy term
 $query = new WP_Query([
@@ -46,19 +38,5 @@ $query = new WP_Query([
 ]);
 
 
-if ( $query->have_posts() ) :
-
-    while ( $query->have_posts() ) :
-        $query->the_post();
-        echo '<div id="' . esc_attr($block_id) . '" class="' . esc_attr($class_name) . '">';
-            the_content();
-        echo '</div>';
-    endwhile;
-
-    wp_reset_postdata();
-
-elseif (is_admin()) :
-
-    echo '<div class="wp-block-area wp-block-area__empty"><em>No content found for this block area.</em></div>';
-
-endif;
+// Output template part
+include CORE_DIR . 'inc/pluggable/content-areas/block/template.php';

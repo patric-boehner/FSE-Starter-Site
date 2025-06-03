@@ -2,18 +2,41 @@
 
 /**
  * Customize ACF functions
- *
- * @author      Patrick Boehner
- * @link        http://www.patrickboehner.com
- * @package     Core Functionality
- * @copyright   Copyright (c) 2012, Patrick Boehner
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
 
 //* Block Acess
 //**********************
 if( !defined( 'ABSPATH' ) ) exit;
+
+
+// Set custom ACF JSON save/load location
+add_filter('acf/settings/save_json', 'cf_selective_acf_save');
+add_filter('acf/settings/load_json', 'cf_acf_json_load_point');
+
+function cf_selective_acf_save($path) {
+    if (isset($_POST['acf_field_group'])) {
+        $field_group = $_POST['acf_field_group'];
+        
+        // Define your plugin's field groups by title
+        $plugin_field_groups = [
+            'Block Area Block Settings',
+            'Icon Block Settings',
+        ];
+        
+        // Check if current field group belongs to your plugin
+        if (in_array($field_group['title'], $plugin_field_groups)) {
+            return CORE_DIR . 'inc/acf-json';
+        }
+    }
+    
+    return $path;
+}
+
+function cf_acf_json_load_point($paths) {
+    $paths[] = CORE_DIR . 'inc/acf-json';
+    return $paths;
+}
 
 
 // Post archive theme settings page
@@ -48,69 +71,4 @@ if( !defined( 'ABSPATH' ) ) exit;
 //         )
 //     );
     
-// }
-
-
-
-/**
- * Dynamic Icon Select 
- * Lists icons found in theme's /assets/icons directory 
- *
- * https://www.billerickson.net/dynamic-dropdown-fields-in-acf/
- */
-add_filter('acf/load_field/name=icon_select', 'cf_acf_icon_select' );
-function cf_acf_icon_select( $field ) {
-
-	$field['choices'] = array( 0 => '(None)' );
-
-	if( ! function_exists( 'cf_get_theme_icons' ) )
-		return $field;
-
-	$icons = cf_get_theme_icons();
-
-	foreach( $icons as $icon ) {
-		$field['choices'][ $icon ] = ucwords($icon);
-	}
-
-	return $field;
-
-}
-
-
-/**
- * Get Theme Icons
- * Refresh cache by bumping CHILD_THEME_VERSION
- */
-// function cf_get_theme_icons( $directory = 'decorative' ) {
-
-// 	$icons = get_option( 'cf_theme_icons_' . $directory );
-
-// 	$version = get_option( 'cf_theme_icons_' . $directory . '_version' );
-
-// 	if( empty( $icons ) || ( defined( 'CHILD_THEME_VERSION' ) && version_compare( CHILD_THEME_VERSION, $version ) ) ) {
-
-// 		$icons = scandir( get_stylesheet_directory() . '/assets/icons/' . $directory );
-// 		$icons = array_diff( $icons, array( '..', '.' ) );
-// 		$icons = array_values( $icons );
-
-// 		if( empty( $icons ) ) {
-// 			return $icons;
-// 		}
-			
-// 		// remove the .svg
-// 		foreach( $icons as $i => $icon ) {
-// 			$icons[ $i ] = substr( $icon, 0, -4 );
-// 		}
-
-// 		update_option( 'cf_theme_icons_' . $directory, $icons );
-
-// 		// Update the icon theme version
-// 		if( defined( 'CHILD_THEME_VERSION' ) ) {
-// 			update_option( 'cf_theme_icons_' . $directory . '_version', CHILD_THEME_VERSION );
-// 		}
-			
-// 	}
-
-// 	return $icons;
-
 // }

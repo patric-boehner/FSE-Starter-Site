@@ -43,5 +43,15 @@ wp.domReady(() => {
         name: 'no-bullets',
         label: 'No Bullets',
     });
+
+    wp.blocks.registerBlockStyle('core/list', {
+        name: 'checkmarks',
+        label: 'Checkmarks',
+    });
+
+    wp.blocks.registerBlockStyle('core/list', {
+        name: 'arrows',
+        label: 'Arrows',
+    });
     
 });
